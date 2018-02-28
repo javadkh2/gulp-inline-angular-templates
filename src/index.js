@@ -69,7 +69,7 @@ module.exports = function (target, options) {
             .pipe(es.through(function (file) {
                 var $ = cheerio.load(file.contents.toString('utf8'), {
                     ignoreWhitespace: false,
-                    xmlMode: false,
+                    xmlMode: !!options.xml,
                     lowerCaseTags: false
                 });
                 var $elem = $(opts.selector);

@@ -1,6 +1,6 @@
 {
   "name": "gulp-ng-inline-templates",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Inline angular templates into an HTML file",
   "license": "MIT",
   "repository": {
