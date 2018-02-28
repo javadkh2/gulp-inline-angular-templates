@@ -1,16 +1,16 @@
 {
-  "name": "gulp-inline-angular-templates",
-  "version": "0.1.5",
+  "name": "gulp-ng-inline-templates",
+  "version": "1.0.0",
   "description": "Inline angular templates into an HTML file",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git://github.com/wmluke/gulp-inline-angular-templates.git"
+    "url": "git://github.com/javadkh2/gulp-inline-angular-templates.git"
   },
   "author": {
-    "name": "wmluke",
-    "email": "wmlukeb@gmail.com",
-    "url": "https://github.com/wmluke"
+    "name": "javadkh2",
+    "email": "khalilian.javad@gmail.com",
+    "url": "https://github.com/javadkh2"
   },
   "engines": {
     "node": ">=0.10.0"
@@ -20,7 +20,7 @@
   },
   "main": "src/index.js",
   "keywords": [
-    "gulpplugin angular templates cache"
+    "gulpplugin angular templates cache xml"
   ],
   "dependencies": {
     "cheerio": "^0.17.0",
