@@ -62,25 +62,37 @@ module.exports = function (target, options) {
         if (buffer.length === 0) {
             return this.emit('end');
         }
-
         var self = this;
-        var joinedContents = Buffer.concat(buffer).toString('utf8');
+        var joinedContents = Buffer.concat(buffer).toString('utf8').replace(/&&/g, '&#x26;&#x26;');
+        if (options.minify) joinedContents = minify(joinedContents);
         fs.src(path.join(process.cwd(), target))
             .pipe(es.through(function (file) {
-                var $ = cheerio.load(file.contents.toString('utf8'), {
+                let htmlContent = file.contents.toString('utf8').replace(/&&/g, '&#x26;&#x26;');
+                if (options.minify) htmlContent = minify(htmlContent)
+                var $ = cheerio.load(htmlContent, {
                     ignoreWhitespace: false,
                     xmlMode: !!options.xml,
-                    lowerCaseTags: false
+                    lowerCaseTags: false,
+                    decodeEntities: false,
                 });
                 var $elem = $(opts.selector);
                 var method = $elem[opts.method] || $elem.prepend;
-                method.call($elem, '\n\n<!-- Begin Templates -->\n' + joinedContents + '\n<!-- End Templates -->\n\n');
+                if (options.minify) {
+                    method.call($elem, joinedContents);
+                } else {
+                    method.call($elem, '\n\n<!-- Begin Templates -->\n' + joinedContents + '\n<!-- End Templates -->\n\n');
+                }
                 var html = unescapeCharacters($.html());
 
                 file.contents = new Buffer(html);
                 self.emit('data', file);
                 self.emit('end');
             }));
+    }
+
+    function minify(html) {
+        return html.replace(/[\s\n]+/g, ' ')
+            .replace(/<!--((?!-->).)*-->/g, '')
     }
 
     return es.through(transform, endStream);

@@ -1,6 +1,6 @@
 {
   "name": "gulp-ng-inline-templates",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "description": "Inline angular templates into an HTML file",
   "license": "MIT",
   "repository": {
@@ -28,8 +28,8 @@
     "gulp-util": "~2.2.14",
     "lodash": "^2.4.1",
     "through2": "~0.4.1",
-    "vinyl-fs": "^0.1.4",
-    "vinyl-source-stream": "^0.1.1"
+    "vinyl-fs": "^3.0.3",
+    "vinyl-source-stream": "^2.0.0"
   },
   "devDependencies": {
     "mocha": "*",
